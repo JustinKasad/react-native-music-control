@@ -18,6 +18,9 @@ public class MusicControl implements ReactPackage {
         modules.add(new MusicControlModule(context));
         return modules;
     }
+    
+    //Fix for RN 0.45.1  This method is not neaded after upgrading to 0.47+
+    public List<Class<? extends JavaScriptModule>> createJSModules() { return Collections.emptyList(); }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext context) {

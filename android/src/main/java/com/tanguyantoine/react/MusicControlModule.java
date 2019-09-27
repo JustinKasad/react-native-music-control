@@ -232,7 +232,13 @@ public class MusicControlModule extends ReactContextBaseJavaModule implements Co
         md.putText(MediaMetadataCompat.METADATA_KEY_GENRE, genre);
         md.putText(MediaMetadataCompat.METADATA_KEY_DISPLAY_DESCRIPTION, description);
         md.putText(MediaMetadataCompat.METADATA_KEY_DATE, date);
-        md.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
+
+//      Android Q (29) automatically shows a progress seeker on the media notification
+//      Disable it until we upgrade this plugin to allow the seeker to actually work
+        if (android.os.Build.VERSION.SDK_INT < 29) {
+            md.putLong(MediaMetadataCompat.METADATA_KEY_DURATION, duration);
+        }
+        
         if (android.os.Build.VERSION.SDK_INT > 19) {
           md.putRating(MediaMetadataCompat.METADATA_KEY_RATING, rating);
         }
